@@ -21,7 +21,7 @@ type EditorType = "json" | "xml" | "yaml" | "html" | "javascript";
 const EDITOR_TYPES: EditorType[] = ["json", "xml", "yaml", "html", "javascript"];
 
 const EDITOR_BASE_PROPS: any = {
-  height: "30vh",
+  height: "calc(100% - 31px)",
   theme: "github",
   width: '100%',
 };
@@ -44,9 +44,18 @@ function App() {
   return (
       <div className="App">
         <NavBar />
-        <EditorContainer title="Input" onTypeChange={(outType) => setOutputType(outType)} currentMode={'json'}><AceEditor {...EDITOR_BASE_PROPS} mode={'json'}></AceEditor></EditorContainer>
-        <EditorContainer title="Template" currentMode={outputType} onTypeChange={(outType) => setOutputType(outType)} ><AceEditor {...EDITOR_BASE_PROPS} mode={outputType}></AceEditor></EditorContainer>
-        <EditorContainer title="Output" currentMode={outputType} onTypeChange={(outType) => setOutputType(outType)} ><AceEditor {...EDITOR_BASE_PROPS} mode={outputType}></AceEditor></EditorContainer>
+        <Split
+          className="editor-list"
+          sizes={[33, 33, 33]}
+          direction="vertical" 
+          gutterSize={10}
+          gutterAlign="center"
+          cursor="col-resize"
+        >
+          <EditorContainer title="Input" onTypeChange={(outType) => setOutputType(outType)} currentMode={'json'}><AceEditor {...EDITOR_BASE_PROPS} mode={'json'}></AceEditor></EditorContainer>
+          <EditorContainer title="Template" currentMode={outputType} onTypeChange={(outType) => setOutputType(outType)} ><AceEditor {...EDITOR_BASE_PROPS} mode={outputType}></AceEditor></EditorContainer>
+          <EditorContainer title="Output" currentMode={outputType} onTypeChange={(outType) => setOutputType(outType)} ><AceEditor {...EDITOR_BASE_PROPS} mode={outputType}></AceEditor></EditorContainer>
+        </Split>
       </div>
   );
 }
