@@ -41,9 +41,6 @@ code {
 
 
 .editor-container {
-  /* display: grid; */
-  /* width: 100%; */
-  /* overflow: hidden; */
   padding: 4px;
   margin: 4px;
   background-color: #c6c6c6;
@@ -55,6 +52,14 @@ code {
   /* width: 100%; */
   justify-content: space-between;
   /* overflow: hidden; */
+}
+
+.editor-container-children {
+  width: 100%;
+  height: calc(100% - 31px);
+  display: grid;
+  grid-template-columns: auto min-content;
+  grid-template-rows: auto;
 }
 
 .editor-type-container {
@@ -85,4 +90,30 @@ code {
   text-align: left;
   float: left;
   margin-bottom: 0;
+}
+
+.collapsible-object-node {
+  border-left: 2px solid black;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  height: min-content;
+}
+
+.collapsible-object-node.root {
+  overflow-y: scroll;
+}
+
+.collapsible-object-children {
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.collapsible-object-button {
+  width: 100%;
+  background-color: unset;
+  border: unset;
+  text-align: left;
 }
