@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { Liquid } from "liquidjs";
 import logo from "./logo.svg";
+import useBreakpoint, {} from '@w11r/use-breakpoint'
 import AceEditor, { split as SplitAceEditor } from "react-ace";
 import { Dropdown, Container, Row, Col, DropdownButton } from "react-bootstrap";
 import Split from "react-split";
@@ -22,11 +23,16 @@ type InputType = "json" | "xml" | "yaml";
 const OUTPUT_TYPES: OutputType[] = ["json", "xml", "yaml", "html"];
 const INPUT_TYPES: InputType[] = ["json", "xml", "yaml"];
 
-const EDITOR_BASE_PROPS: any = {
+const EDITOR_BASE_PROPS = {
   height: "calc(100% - 31px)",
   theme: "github",
   width: "100%",
 };
+
+// const breakpoints = {
+//   smallWidth: [800, 2000],
+//   smallHeight: [2000, 800],
+// }
 
 function App() {
   const [inputText, setInputText] = useState('{"name": "doug"}');
@@ -34,6 +40,32 @@ function App() {
   const [outputType, setOutputType] = useState<OutputType>("html");
   const [inputType, setInputType] = useState<InputType>("json");
   const [output, setOutput] = useState("");
+  const breakpoint = useBreakpoint();
+  const [sizes, setSizes] = useState([33,33,33]);
+  
+  useEffect(() => {
+    const editorContainers = document.querySelectorAll('.editor-list > *');
+    editorContainers.forEach((elt) => {
+      const element = elt as HTMLDivElement;
+      console.log(elt)
+      if (breakpoint.isLandscape) {
+        element.style.removeProperty('height');
+      } else {
+        element.style.removeProperty('width');
+      }
+    });
+    
+    // document.querySelectorAll('.editor-list > .gutter').forEach((elt) => {
+    //   const element = elt as HTMLDivElement;
+    //   if (breakpoint.isLandscape) {
+    //     element.style.removeProperty('height');
+    //   } else {
+    //     element.style.removeProperty('width');
+    //   }
+    // })
+  }, [breakpoint.isLandscape]);
+  
+  
   // const outputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,14 +75,14 @@ function App() {
       console.log(out);
     });
   }, [templateText, inputText]);
-
+  
   return (
     <div className="App">
       <NavBar />
       <Split
         className="editor-list"
-        sizes={[33, 33, 33]}
-        direction="vertical"
+        sizes={sizes}
+        direction={breakpoint.isLandscape ? 'horizontal': 'vertical'}
         gutterSize={10}
         gutterAlign="center"
         cursor="col-resize"

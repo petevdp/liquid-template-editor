@@ -66,6 +66,14 @@ code {
 
 .editor-list {
   height: calc(100% - 15px);
+  display: flex;
+}
+
+
+ @media screen and (orientation:portrait) {
+   .editor-list {
+     flex-direction: column;
+   }
 }
 
 .editor-type-container label {
