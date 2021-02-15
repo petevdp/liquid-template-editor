@@ -6,7 +6,7 @@ import { Dropdown, Container, Row, Col, DropdownButton } from "react-bootstrap";
 import Split from "react-split";
 import "./App.css";
 
-import 'ace-builds/webpack-resolver';
+import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/mode-liquid";
 import "ace-builds/src-noconflict/mode-xml";
 import "ace-builds/src-noconflict/mode-yaml";
@@ -16,20 +16,23 @@ import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-github";
 import { NavBar } from "./Navbar";
 
-type EditorType = "json" | "xml" | "yaml" | "html" | "javascript";
+type OutputType = "json" | "xml" | "yaml" | "html";
+type InputType = "json" | "xml" | "yaml";
 
-const EDITOR_TYPES: EditorType[] = ["json", "xml", "yaml", "html", "javascript"];
+const OUTPUT_TYPES: OutputType[] = ["json", "xml", "yaml", "html"];
+const INPUT_TYPES: InputType[] = ["json", "xml", "yaml"];
 
 const EDITOR_BASE_PROPS: any = {
   height: "calc(100% - 31px)",
   theme: "github",
-  width: '100%',
+  width: "100%",
 };
 
 function App() {
   const [inputText, setInputText] = useState('{"name": "doug"}');
   const [templateText, setTemplateText] = useState("<div>hello {{name}}</div>");
-  const [outputType, setOutputType] = useState<EditorType>("html");
+  const [outputType, setOutputType] = useState<OutputType>("html");
+  const [inputType, setInputType] = useState<InputType>("json");
   const [output, setOutput] = useState("");
   // const outputRef = useRef<HTMLDivElement>(null);
 
@@ -42,50 +45,81 @@ function App() {
   }, [templateText, inputText]);
 
   return (
-      <div className="App">
-        <NavBar />
-        <Split
-          className="editor-list"
-          sizes={[33, 33, 33]}
-          direction="vertical" 
-          gutterSize={10}
-          gutterAlign="center"
-          cursor="col-resize"
+    <div className="App">
+      <NavBar />
+      <Split
+        className="editor-list"
+        sizes={[33, 33, 33]}
+        direction="vertical"
+        gutterSize={10}
+        gutterAlign="center"
+        cursor="col-resize"
+      >
+        <EditorContainer
+          title="Input"
+          currentMode={inputType}
+          onTypeChange={(inType) => setInputType(inType)}
+          options={INPUT_TYPES}
         >
-          <EditorContainer title="Input" onTypeChange={(outType) => setOutputType(outType)} currentMode={'json'}><AceEditor {...EDITOR_BASE_PROPS} mode={'json'}></AceEditor></EditorContainer>
-          <EditorContainer title="Template" currentMode={outputType} onTypeChange={(outType) => setOutputType(outType)} ><AceEditor {...EDITOR_BASE_PROPS} mode={outputType}></AceEditor></EditorContainer>
-          <EditorContainer title="Output" currentMode={outputType} onTypeChange={(outType) => setOutputType(outType)} ><AceEditor {...EDITOR_BASE_PROPS} mode={outputType}></AceEditor></EditorContainer>
-        </Split>
-      </div>
+          <AceEditor {...EDITOR_BASE_PROPS} mode={"json"} value={inputText} onChange={(value: string) => setInputText(value)}></AceEditor>
+        </EditorContainer>
+        <EditorContainer title="Template" currentMode={outputType} options={OUTPUT_TYPES}>
+          <AceEditor {...EDITOR_BASE_PROPS} mode={outputType} onChange={(value: string) => setTemplateText(value)} value={templateText}></AceEditor>
+        </EditorContainer>
+        <EditorContainer
+          title="Output"
+          currentMode={outputType}
+          onTypeChange={(outType) => setOutputType(outType)}
+          typeLabel="Output Type"
+          options={OUTPUT_TYPES}
+        >
+          <AceEditor {...EDITOR_BASE_PROPS} value={output} mode={outputType} readOnly={true}></AceEditor>
+        </EditorContainer>
+      </Split>
+    </div>
   );
 }
 
-
-function EditorContainer({title, children, onTypeChange, currentMode}: {title: ReactNode; children: React.ReactNode; onTypeChange?: (e: EditorType) => void, currentMode: EditorType}) {
+function EditorContainer<ModeType extends string>({
+  title,
+  children,
+  onTypeChange,
+  currentMode,
+  typeLabel,
+  options,
+}: {
+  title: ReactNode;
+  children: React.ReactNode;
+  onTypeChange?: (e: ModeType) => void;
+  currentMode: ModeType;
+  typeLabel?: string;
+  options: ModeType[];
+}) {
   return (
-        <div className="editor-container">
-          <div className="editor-control-panel">
-            <label className="editor-label">{title}</label>
-            {onTypeChange &&
-              <span className="editor-type-container">
-                <label className="type-label">Output Type: </label>
-                <DropdownButton className="mode-type-dropdown"
-                    title={currentMode}
-                    variant="secondary"
-                    size="sm"
-                 >
-                    {EDITOR_TYPES.map((outputType) => (
-                      <Dropdown.Item key={outputType} onClick={(e) => onTypeChange(outputType)}>
-                        {outputType}
-                      </Dropdown.Item>
-                    ))}
-                 </DropdownButton>
-              </span>
-            }
-          </div>
-          {children}
-        </div>
-  )
+    <div className="editor-container">
+      <div className="editor-control-panel">
+        <label className="editor-label">{title}</label>
+        {onTypeChange && (
+          <span className="editor-type-container">
+            {typeLabel && <label className="type-label">Output Type: </label>}
+            <DropdownButton
+              className="mode-type-dropdown"
+              title={currentMode}
+              variant="secondary"
+              size="sm"
+            >
+              {options.map((modeType) => (
+                <Dropdown.Item key={modeType} onClick={(e) => onTypeChange(modeType)}>
+                  {modeType}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
+          </span>
+        )}
+      </div>
+      {children}
+    </div>
+  );
 }
 
 async function evaluateTemplate(inputText: string, templateText: string): Promise<string> {
