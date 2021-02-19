@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/liquid-template-editor/static/css/main.237593b6.chunk.css",
-    "main.js": "/liquid-template-editor/static/js/main.f4a46ec7.chunk.js",
-    "main.js.map": "/liquid-template-editor/static/js/main.f4a46ec7.chunk.js.map",
-    "runtime-main.js": "/liquid-template-editor/static/js/runtime-main.c451301b.js",
-    "runtime-main.js.map": "/liquid-template-editor/static/js/runtime-main.c451301b.js.map",
+    "main.js": "/liquid-template-editor/static/js/main.32d13a8f.chunk.js",
+    "main.js.map": "/liquid-template-editor/static/js/main.32d13a8f.chunk.js.map",
+    "runtime-main.js": "/liquid-template-editor/static/js/runtime-main.c2b09a5f.js",
+    "runtime-main.js.map": "/liquid-template-editor/static/js/runtime-main.c2b09a5f.js.map",
     "static/css/2.150d169a.chunk.css": "/liquid-template-editor/static/css/2.150d169a.chunk.css",
-    "static/js/2.0ea87913.chunk.js": "/liquid-template-editor/static/js/2.0ea87913.chunk.js",
-    "static/js/2.0ea87913.chunk.js.map": "/liquid-template-editor/static/js/2.0ea87913.chunk.js.map",
-    "static/js/3.33ae2458.chunk.js": "/liquid-template-editor/static/js/3.33ae2458.chunk.js",
-    "static/js/3.33ae2458.chunk.js.map": "/liquid-template-editor/static/js/3.33ae2458.chunk.js.map",
+    "static/js/2.29cc51c5.chunk.js": "/liquid-template-editor/static/js/2.29cc51c5.chunk.js",
+    "static/js/2.29cc51c5.chunk.js.map": "/liquid-template-editor/static/js/2.29cc51c5.chunk.js.map",
+    "static/js/3.a073fdb9.chunk.js": "/liquid-template-editor/static/js/3.a073fdb9.chunk.js",
+    "static/js/3.a073fdb9.chunk.js.map": "/liquid-template-editor/static/js/3.a073fdb9.chunk.js.map",
     "mode-livescript.js": "/liquid-template-editor/00f32d088488515ac84b1ffe7fc0ec0d.js",
     "ftl.js": "/liquid-template-editor/024358f71f8096dd8052103dced05dbc.js",
     "mode-terraform.js": "/liquid-template-editor/02a3067bd4d8feab048883fbaff9722c.js",
@@ -427,13 +427,13 @@
     "index.html": "/liquid-template-editor/index.html",
     "static/css/2.150d169a.chunk.css.map": "/liquid-template-editor/static/css/2.150d169a.chunk.css.map",
     "static/css/main.237593b6.chunk.css.map": "/liquid-template-editor/static/css/main.237593b6.chunk.css.map",
-    "static/js/2.0ea87913.chunk.js.LICENSE.txt": "/liquid-template-editor/static/js/2.0ea87913.chunk.js.LICENSE.txt"
+    "static/js/2.29cc51c5.chunk.js.LICENSE.txt": "/liquid-template-editor/static/js/2.29cc51c5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c451301b.js",
+    "static/js/runtime-main.c2b09a5f.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.0ea87913.chunk.js",
+    "static/js/2.29cc51c5.chunk.js",
     "static/css/main.237593b6.chunk.css",
-    "static/js/main.f4a46ec7.chunk.js"
+    "static/js/main.32d13a8f.chunk.js"
   ]
 }
