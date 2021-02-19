@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/liquid-template-editor/static/css/main.237593b6.chunk.css",
-    "main.js": "/liquid-template-editor/static/js/main.32d13a8f.chunk.js",
-    "main.js.map": "/liquid-template-editor/static/js/main.32d13a8f.chunk.js.map",
+    "main.js": "/liquid-template-editor/static/js/main.e277ea29.chunk.js",
+    "main.js.map": "/liquid-template-editor/static/js/main.e277ea29.chunk.js.map",
     "runtime-main.js": "/liquid-template-editor/static/js/runtime-main.c2b09a5f.js",
     "runtime-main.js.map": "/liquid-template-editor/static/js/runtime-main.c2b09a5f.js.map",
     "static/css/2.150d169a.chunk.css": "/liquid-template-editor/static/css/2.150d169a.chunk.css",
@@ -434,6 +434,6 @@
     "static/css/2.150d169a.chunk.css",
     "static/js/2.29cc51c5.chunk.js",
     "static/css/main.237593b6.chunk.css",
-    "static/js/main.32d13a8f.chunk.js"
+    "static/js/main.e277ea29.chunk.js"
   ]
 }
