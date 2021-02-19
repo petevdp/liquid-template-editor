@@ -40,12 +40,11 @@ const EDITOR_BASE_PROPS = {
 
 
 const STARTING_INPUTS = {
-  simpleJson: '{"name": "doug"}',
-  nestedJson: '{"people": [{"name": "clide"}, {"name": "doug"}, {"name": "bob"}]}',
+  simpleJson: '{"name": "world"}',
 }
 
 function App() {
-  const [inputText, setInputText] = useState(STARTING_INPUTS.nestedJson);
+  const [inputText, setInputText] = useState(STARTING_INPUTS.simpleJson);
   const [templateText, setTemplateText] = useState("<div>hello {{name}}</div>");
   const [outputType, setOutputType] = useState<OutputType>("html");
   const [inputType, setInputType] = useState<InputType>("json");
