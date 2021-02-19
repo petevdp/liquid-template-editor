@@ -104,6 +104,7 @@ code {
 
 .collapsible-object-node.root {
   overflow-y: scroll;
+  height: 100%;
 }
 
 .collapsible-object-children {
