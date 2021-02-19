@@ -28,9 +28,9 @@ const OUTPUT_TYPES: OutputType[] = ["json", "xml", "yaml", "html"];
 const INPUT_TYPES: InputType[] = ["json", "xml", "yaml"];
 
 const EDITOR_BASE_PROPS = {
-  height: "100%",
   theme: "github",
-  width: "100%",
+  // height: "500px",
+  // width: "100%",
 };
 
 // const breakpoints = {
@@ -92,21 +92,26 @@ function App() {
           onTypeChange={(inType) => setInputType(inType)}
           options={INPUT_TYPES}
         >
+        {({width, height}) => 
           <AceEditor
             {...EDITOR_BASE_PROPS}
+            width={width}
+            height={height}
             mode={inputType}
             value={inputText}
             onChange={(value: string) => setInputText(value)}
           ></AceEditor>
-          <CollapsibleObject obj={parseInput(inputText, inputType)} name="root" isOpen={true}/>
+        }
         </EditorContainer>
         <EditorContainer title="Template" currentMode={outputType} options={OUTPUT_TYPES}>
-          <AceEditor
+          {({width, height})  => <AceEditor
             {...EDITOR_BASE_PROPS}
+            width={width}
+            height={height}
             mode={outputType}
             onChange={(value: string) => setTemplateText(value)}
             value={templateText}
-          ></AceEditor>
+          ></AceEditor>}
         </EditorContainer>
         <EditorContainer
           title="Output"
@@ -115,12 +120,16 @@ function App() {
           typeLabel="Output Type"
           options={OUTPUT_TYPES}
         >
+        {({width, height}) => 
           <AceEditor
             {...EDITOR_BASE_PROPS}
+            width={width}
+            height={height}
             value={output}
             mode={outputType}
             readOnly={true}
           ></AceEditor>
+        }
         </EditorContainer>
       </Split>
     </div>
